@@ -1,0 +1,600 @@
+{
+	"info": {
+		"_postman_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+		"name": "Product Inventory System API",
+		"description": "A comprehensive API collection for the Product Inventory Management System.\n\n## Authentication\nThis API uses HTTP Basic Authentication.\n\n**Default Credentials:**\n- Admin: `admin` / `admin123`\n- User: `user` / `user123`\n\n## Base URL\n`http://localhost:8080/api/products`",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "admin123",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "admin",
+				"type": "string"
+			}
+		]
+	},
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080",
+			"type": "string"
+		},
+		{
+			"key": "apiPath",
+			"value": "/api/products",
+			"type": "string"
+		}
+	],
+	"item": [
+		{
+			"name": "Product Management",
+			"description": "Endpoints for managing products in the inventory.",
+			"item": [
+				{
+					"name": "Create Product",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"sku\": \"PROD-001\",\n    \"name\": \"Wireless Bluetooth Mouse\",\n    \"price\": 29.99,\n    \"quantity\": 100,\n    \"description\": \"Ergonomic wireless mouse with Bluetooth 5.0 connectivity\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}{{apiPath}}",
+							"host": ["{{baseUrl}}{{apiPath}}"]
+						},
+						"description": "Create a new product in the inventory.\n\n**Required Fields:**\n- `sku`: Unique Stock Keeping Unit identifier\n- `name`: Product name\n- `price`: Product price\n- `quantity`: Initial stock quantity\n\n**Optional Fields:**\n- `description`: Product description"
+					},
+					"response": [
+						{
+							"name": "Product Created Successfully",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"sku\": \"PROD-001\",\n    \"name\": \"Wireless Bluetooth Mouse\",\n    \"price\": 29.99,\n    \"quantity\": 100,\n    \"description\": \"Ergonomic wireless mouse with Bluetooth 5.0 connectivity\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}{{apiPath}}",
+									"host": ["{{baseUrl}}{{apiPath}}"]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"body": "{\n    \"id\": 1,\n    \"sku\": \"PROD-001\",\n    \"name\": \"Wireless Bluetooth Mouse\",\n    \"price\": 29.99,\n    \"quantity\": 100,\n    \"description\": \"Ergonomic wireless mouse with Bluetooth 5.0 connectivity\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Create Product - Keyboard",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"sku\": \"PROD-002\",\n    \"name\": \"Mechanical Gaming Keyboard\",\n    \"price\": 89.99,\n    \"quantity\": 50,\n    \"description\": \"RGB mechanical keyboard with Cherry MX switches\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}{{apiPath}}",
+							"host": ["{{baseUrl}}{{apiPath}}"]
+						},
+						"description": "Create a sample keyboard product."
+					},
+					"response": []
+				},
+				{
+					"name": "Create Product - Monitor",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"sku\": \"PROD-003\",\n    \"name\": \"27-inch 4K Monitor\",\n    \"price\": 349.99,\n    \"quantity\": 25,\n    \"description\": \"Ultra HD 4K IPS display with HDR support\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}{{apiPath}}",
+							"host": ["{{baseUrl}}{{apiPath}}"]
+						},
+						"description": "Create a sample monitor product."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Product by SKU",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}{{apiPath}}/PROD-001",
+							"host": ["{{baseUrl}}{{apiPath}}"],
+							"path": ["PROD-001"]
+						},
+						"description": "Retrieve a product by its SKU (Stock Keeping Unit).\n\n**Path Parameters:**\n- `sku`: The unique product SKU"
+					},
+					"response": [
+						{
+							"name": "Product Found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}{{apiPath}}/PROD-001",
+									"host": ["{{baseUrl}}{{apiPath}}"],
+									"path": ["PROD-001"]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"body": "{\n    \"id\": 1,\n    \"sku\": \"PROD-001\",\n    \"name\": \"Wireless Bluetooth Mouse\",\n    \"price\": 29.99,\n    \"quantity\": 100,\n    \"description\": \"Ergonomic wireless mouse with Bluetooth 5.0 connectivity\"\n}"
+						},
+						{
+							"name": "Product Not Found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}{{apiPath}}/INVALID-SKU",
+									"host": ["{{baseUrl}}{{apiPath}}"],
+									"path": ["INVALID-SKU"]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"body": "{\n    \"timestamp\": \"2025-12-06T00:00:00\",\n    \"status\": 404,\n    \"error\": \"Not Found\",\n    \"message\": \"Product with SKU 'INVALID-SKU' not found\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Product - Not Found Example",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}{{apiPath}}/NONEXISTENT-SKU",
+							"host": ["{{baseUrl}}{{apiPath}}"],
+							"path": ["NONEXISTENT-SKU"]
+						},
+						"description": "Example request that returns a 404 error for a non-existent product."
+					},
+					"response": []
+				},
+				{
+					"name": "Restock Product",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"quantityToAdd\": 50\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}{{apiPath}}/PROD-001/restock",
+							"host": ["{{baseUrl}}{{apiPath}}"],
+							"path": ["PROD-001", "restock"]
+						},
+						"description": "Add stock quantity to an existing product.\n\n**Path Parameters:**\n- `sku`: The product SKU to restock\n\n**Request Body:**\n- `quantityToAdd`: The quantity to add to current stock"
+					},
+					"response": [
+						{
+							"name": "Product Restocked Successfully",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"quantityToAdd\": 50\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}{{apiPath}}/PROD-001/restock",
+									"host": ["{{baseUrl}}{{apiPath}}"],
+									"path": ["PROD-001", "restock"]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"body": "{\n    \"id\": 1,\n    \"sku\": \"PROD-001\",\n    \"name\": \"Wireless Bluetooth Mouse\",\n    \"price\": 29.99,\n    \"quantity\": 150,\n    \"description\": \"Ergonomic wireless mouse with Bluetooth 5.0 connectivity\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Restock Product - Large Quantity",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"quantityToAdd\": 1000\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}{{apiPath}}/PROD-002/restock",
+							"host": ["{{baseUrl}}{{apiPath}}"],
+							"path": ["PROD-002", "restock"]
+						},
+						"description": "Restock a product with a large quantity."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Utility Calculations",
+			"description": "Endpoints for product-related calculations.",
+			"item": [
+				{
+					"name": "Calculate Discount - 20%",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}{{apiPath}}/calculate/discount?originalPrice=100&discountRate=20",
+							"host": ["{{baseUrl}}{{apiPath}}"],
+							"path": ["calculate", "discount"],
+							"query": [
+								{
+									"key": "originalPrice",
+									"value": "100",
+									"description": "The original price of the product"
+								},
+								{
+									"key": "discountRate",
+									"value": "20",
+									"description": "The discount percentage (0-100)"
+								}
+							]
+						},
+						"description": "Calculate the discounted price for a product.\n\n**Query Parameters:**\n- `originalPrice`: The original price\n- `discountRate`: The discount percentage (0-100)"
+					},
+					"response": [
+						{
+							"name": "Discount Calculated",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}{{apiPath}}/calculate/discount?originalPrice=100&discountRate=20",
+									"host": ["{{baseUrl}}{{apiPath}}"],
+									"path": ["calculate", "discount"],
+									"query": [
+										{
+											"key": "originalPrice",
+											"value": "100"
+										},
+										{
+											"key": "discountRate",
+											"value": "20"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"body": "{\n    \"originalPrice\": 100.0,\n    \"discountRate\": 20.0,\n    \"discountedPrice\": 80.0\n}"
+						}
+					]
+				},
+				{
+					"name": "Calculate Discount - 50%",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}{{apiPath}}/calculate/discount?originalPrice=199.99&discountRate=50",
+							"host": ["{{baseUrl}}{{apiPath}}"],
+							"path": ["calculate", "discount"],
+							"query": [
+								{
+									"key": "originalPrice",
+									"value": "199.99"
+								},
+								{
+									"key": "discountRate",
+									"value": "50"
+								}
+							]
+						},
+						"description": "Calculate a 50% discount on a product."
+					},
+					"response": []
+				},
+				{
+					"name": "Calculate Discount - No Discount",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}{{apiPath}}/calculate/discount?originalPrice=49.99&discountRate=0",
+							"host": ["{{baseUrl}}{{apiPath}}"],
+							"path": ["calculate", "discount"],
+							"query": [
+								{
+									"key": "originalPrice",
+									"value": "49.99"
+								},
+								{
+									"key": "discountRate",
+									"value": "0"
+								}
+							]
+						},
+						"description": "Test with 0% discount - price should remain unchanged."
+					},
+					"response": []
+				},
+				{
+					"name": "Calculate Discount - Invalid Rate (Error)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}{{apiPath}}/calculate/discount?originalPrice=100&discountRate=150",
+							"host": ["{{baseUrl}}{{apiPath}}"],
+							"path": ["calculate", "discount"],
+							"query": [
+								{
+									"key": "originalPrice",
+									"value": "100"
+								},
+								{
+									"key": "discountRate",
+									"value": "150"
+								}
+							]
+						},
+						"description": "Test with invalid discount rate (>100) - should return error."
+					},
+					"response": []
+				},
+				{
+					"name": "Check Quantity - Sufficient Stock",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}{{apiPath}}/check/quantity?currentQuantity=100&requiredQuantity=50",
+							"host": ["{{baseUrl}}{{apiPath}}"],
+							"path": ["check", "quantity"],
+							"query": [
+								{
+									"key": "currentQuantity",
+									"value": "100",
+									"description": "Current stock quantity"
+								},
+								{
+									"key": "requiredQuantity",
+									"value": "50",
+									"description": "Required quantity for order"
+								}
+							]
+						},
+						"description": "Check if current stock is sufficient for an order.\n\n**Query Parameters:**\n- `currentQuantity`: Current stock quantity\n- `requiredQuantity`: Required quantity for the order"
+					},
+					"response": [
+						{
+							"name": "Stock Sufficient",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}{{apiPath}}/check/quantity?currentQuantity=100&requiredQuantity=50",
+									"host": ["{{baseUrl}}{{apiPath}}"],
+									"path": ["check", "quantity"],
+									"query": [
+										{
+											"key": "currentQuantity",
+											"value": "100"
+										},
+										{
+											"key": "requiredQuantity",
+											"value": "50"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"body": "{\n    \"currentQuantity\": 100,\n    \"requiredQuantity\": 50,\n    \"isSufficient\": true\n}"
+						}
+					]
+				},
+				{
+					"name": "Check Quantity - Insufficient Stock",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}{{apiPath}}/check/quantity?currentQuantity=10&requiredQuantity=50",
+							"host": ["{{baseUrl}}{{apiPath}}"],
+							"path": ["check", "quantity"],
+							"query": [
+								{
+									"key": "currentQuantity",
+									"value": "10"
+								},
+								{
+									"key": "requiredQuantity",
+									"value": "50"
+								}
+							]
+						},
+						"description": "Test with insufficient stock - should return isSufficient: false."
+					},
+					"response": []
+				},
+				{
+					"name": "Check Quantity - Exact Match",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}{{apiPath}}/check/quantity?currentQuantity=50&requiredQuantity=50",
+							"host": ["{{baseUrl}}{{apiPath}}"],
+							"path": ["check", "quantity"],
+							"query": [
+								{
+									"key": "currentQuantity",
+									"value": "50"
+								},
+								{
+									"key": "requiredQuantity",
+									"value": "50"
+								}
+							]
+						},
+						"description": "Test when stock exactly matches requirement - should return true."
+					},
+					"response": []
+				},
+				{
+					"name": "Check Quantity - Zero Requirement",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}{{apiPath}}/check/quantity?currentQuantity=10&requiredQuantity=0",
+							"host": ["{{baseUrl}}{{apiPath}}"],
+							"path": ["check", "quantity"],
+							"query": [
+								{
+									"key": "currentQuantity",
+									"value": "10"
+								},
+								{
+									"key": "requiredQuantity",
+									"value": "0"
+								}
+							]
+						},
+						"description": "Test with zero required quantity - should always return true."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Error Scenarios",
+			"description": "Examples of error handling in the API.",
+			"item": [
+				{
+					"name": "Negative Price Error",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}{{apiPath}}/calculate/discount?originalPrice=-50&discountRate=10",
+							"host": ["{{baseUrl}}{{apiPath}}"],
+							"path": ["calculate", "discount"],
+							"query": [
+								{
+									"key": "originalPrice",
+									"value": "-50"
+								},
+								{
+									"key": "discountRate",
+									"value": "10"
+								}
+							]
+						},
+						"description": "Test with negative price - should return Bad Request error."
+					},
+					"response": []
+				},
+				{
+					"name": "Negative Quantity Error",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}{{apiPath}}/check/quantity?currentQuantity=-10&requiredQuantity=5",
+							"host": ["{{baseUrl}}{{apiPath}}"],
+							"path": ["check", "quantity"],
+							"query": [
+								{
+									"key": "currentQuantity",
+									"value": "-10"
+								},
+								{
+									"key": "requiredQuantity",
+									"value": "5"
+								}
+							]
+						},
+						"description": "Test with negative quantity - should return Bad Request error."
+					},
+					"response": []
+				},
+				{
+					"name": "Restock Non-existent Product",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"quantityToAdd\": 100\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}{{apiPath}}/INVALID-SKU/restock",
+							"host": ["{{baseUrl}}{{apiPath}}"],
+							"path": ["INVALID-SKU", "restock"]
+						},
+						"description": "Attempt to restock a non-existent product - should return 404 error."
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
